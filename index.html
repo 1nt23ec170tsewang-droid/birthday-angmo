@@ -175,6 +175,7 @@
       100% {
         transform: translateY(-120vh);
       }
+ .cartoon { position: fixed; right: 20px; bottom: 30px; font-size: 80px; animation: cartoonDance 2s ease-in-out infinite, cartoonSpin 3s linear infinite; transform-origin: center; z-index: 100; } @keyframes cartoonDance { 0%, 100% { transform: translateY(0deg) rotate(0deg); } 25% { transform: translateY(-20px) rotate(5deg); } 50% { transform: translateY(0deg) rotate(-5deg); } 75% { transform: translateY(-15px) rotate(3deg); } } @keyframes cartoonSpin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     }
   </style>
 </head>
@@ -280,5 +281,6 @@
       typeWriter(fullText);
     });
   </script>
+   <div class="cartoon">🎂</div>
 </body>
 </html>
