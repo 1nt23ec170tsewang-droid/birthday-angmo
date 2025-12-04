@@ -12,6 +12,7 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
+
     body {
       min-height: 100vh;
       display: flex;
@@ -20,6 +21,7 @@
       background: radial-gradient(circle at top, #ffe4f7, #ffd1dc, #ffecd2);
       overflow: hidden;
     }
+
 
     .card {
       background: rgba(255, 255, 255, 0.9);
@@ -33,17 +35,45 @@
       backdrop-filter: blur(8px);
     }
 
-    .card h1 {
-      font-size: 1.7rem;
-      margin-bottom: 8px;
+
+    .photo-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 10px;
     }
 
+
+    .photo {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #ff9fbb;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22);
+    }
+
+
+    .emoji {
+      font-size: 1.5rem;
+      margin-top: 8px;
+      margin-bottom: 6px;
+      animation: float 2s ease-in-out infinite;
+    }
+
+
+    .card h1 {
+      font-size: 1.7rem;
+      margin-bottom: 4px;
+    }
+
+
     .card h2 {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 500;
       margin-bottom: 16px;
       color: #555;
     }
+
 
     .btn {
       border: none;
@@ -61,47 +91,59 @@
       transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.3s ease;
     }
 
+
     .btn:hover {
       transform: translateY(-1px) scale(1.02);
       box-shadow: 0 14px 30px rgba(255, 122, 162, 0.45);
     }
+
 
     .btn:active {
       transform: translateY(1px) scale(0.98);
       box-shadow: 0 8px 18px rgba(255, 122, 162, 0.35);
     }
 
+
     .hidden {
       display: none;
     }
 
+
     .message {
       margin-top: 6px;
-      font-size: 0.98rem;
+      font-size: 1rem;
       line-height: 1.5;
       color: #333;
     }
 
-    .highlight {
-      font-weight: 600;
-    }
 
     .tagline {
-      font-size: 0.85rem;
-      color: #777;
-      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #555;
+      margin-top: 12px;
     }
 
-    .emoji {
-      font-size: 1.5rem;
-      margin-bottom: 6px;
-      animation: float 2s ease-in-out infinite;
+
+    .quote {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      font-style: italic;
+      color: #444;
     }
+
+
+    .small-note {
+      margin-top: 14px;
+      font-size: 0.8rem;
+      color: #999;
+    }
+
 
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-6px); }
     }
+
 
     /* Confetti */
     .confetti {
@@ -115,6 +157,7 @@
       z-index: 10;
     }
 
+
     @keyframes fall {
       0% {
         transform: translate3d(var(--start-x), 0, 0) rotate(0deg);
@@ -123,6 +166,7 @@
         transform: translate3d(var(--end-x), 110vh, 0) rotate(360deg);
       }
     }
+
 
     /* Typewriter effect */
     .typewriter {
@@ -133,16 +177,12 @@
       animation: caret 0.7s step-end infinite;
     }
 
+
     @keyframes caret {
       0%, 100% { border-color: transparent; }
       50% { border-color: #333; }
     }
 
-    .small-note {
-      margin-top: 14px;
-      font-size: 0.8rem;
-      color: #999;
-    }
 
     /* Floating decorations */
     .bubble {
@@ -152,6 +192,7 @@
       animation: bubbleUp linear infinite;
       z-index: 0;
     }
+
 
     @keyframes bubbleUp {
       0% {
@@ -165,24 +206,44 @@
 </head>
 <body>
   <div class="card">
+    <!-- Birthday girl photo -->
+    <div class="photo-wrapper">
+      <!-- Put angmo.jpg in same folder or replace src with your own image URL -->
+      <img src="birthday_angmo/WhatsApp Image 2025-12-04 at 10.21.44 PM.jpeg" alt="Angmo" class="photo">
+    </div>
+
+
     <div class="emoji">🎁</div>
     <h1>Hi, Angmo! 💛</h1>
-    <h2>There's a little birthday surprise for you…</h2>
+    <h2>There's a little birthday surprise just for you…</h2>
+
 
     <button class="btn" id="openBtn">Tap to open your surprise 🎉</button>
+
 
     <div id="wishBox" class="hidden">
       <p class="message">
         <span class="typewriter" id="typeText"></span>
       </p>
+
+
+      <!-- Main birthday quote -->
+      <p class="quote">
+        "May your birthday be filled with smiles, soft moments, and all the little things that make your heart happy."
+      </p>
+
+
       <p class="tagline">
         Wishing you lots of happiness and fun — always stay safe and healthy. 💫
       </p>
+
+
       <p class="small-note">
-        (Someone out there cares about you a lot 🩵)
+        (Someone out there is really grateful you were born 💙)
       </p>
     </div>
   </div>
+
 
   <script>
     // Text to type
@@ -191,6 +252,7 @@
     const openBtn = document.getElementById("openBtn");
     const wishBox = document.getElementById("wishBox");
 
+
     function typeWriter(text, i = 0, speed = 80) {
       if (i <= text.length) {
         typeEl.textContent = text.slice(0, i);
@@ -198,34 +260,42 @@
       }
     }
 
+
     function createConfettiPiece() {
       const conf = document.createElement("div");
       conf.className = "confetti";
 
+
       const colors = ["#ff6b81", "#fddb3a", "#1dd3b0", "#a66cff", "#ff9f68"];
       conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
 
       const startX = Math.random() * 100 + "vw";
       const endX = Math.random() * 100 + "vw";
       const duration = 3.5 + Math.random() * 2;
+
 
       conf.style.setProperty("--start-x", startX);
       conf.style.setProperty("--end-x", endX);
       conf.style.left = startX;
       conf.style.animationDuration = duration + "s";
 
+
       document.body.appendChild(conf);
+
 
       setTimeout(() => {
         conf.remove();
       }, duration * 1000);
     }
 
+
     function launchConfetti() {
       for (let i = 0; i < 150; i++) {
         setTimeout(createConfettiPiece, i * 20);
       }
     }
+
 
     function createBubble() {
       const bubble = document.createElement("div");
@@ -236,21 +306,27 @@
       bubble.style.left = Math.random() * 100 + "vw";
       bubble.style.bottom = "-80px";
 
+
       const colors = ["#ffffff", "#ffe4f7", "#ffd1dc"];
       bubble.style.background = colors[Math.floor(Math.random() * colors.length)];
+
 
       const duration = 10 + Math.random() * 10;
       bubble.style.animationDuration = duration + "s";
 
+
       document.body.appendChild(bubble);
+
 
       setTimeout(() => bubble.remove(), duration * 1000);
     }
+
 
     // Create floating bubbles in background
     for (let i = 0; i < 18; i++) {
       setTimeout(createBubble, i * 600);
     }
+
 
     openBtn.addEventListener("click", () => {
       openBtn.classList.add("hidden");
